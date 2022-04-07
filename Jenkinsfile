@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent { docker { image 'golang' } }
     environment {
         root = "/usr/local/go/bin/go"
         branch = "master"
@@ -8,7 +8,7 @@ pipeline{
 
     stages{
         stage('Docker') {
-            agent { docker { image 'golang' } }
+            
 
             steps {
                 sh "go version"
