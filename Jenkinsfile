@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        any { image 'node:16.13.1-alpine' }
+        any { image 'golang' }
     }
     stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'go version'
             }
         }
     }
