@@ -8,14 +8,16 @@ pipeline{
 
     stages{
         stage('Docker') {
-            agent { docker { image 'golang:alpine' } }
+            agent { docker { image 'sum-golang' } }
 
             steps {
                 sh "go version"
-                sh "${root} version"
-                git branch: "${branch}", url: "${scmUrl}"
-                sh "${root} test ./... -cover"
-                sh "${root} build ./..."
+                sh "go test -cover"
+                sh "go build"
+                // sh "${root} version"
+                // git branch: "${branch}", url: "${scmUrl}"
+                // sh "${root} test ./... -cover"
+                // sh "${root} build ./..."
             }
         }
 
