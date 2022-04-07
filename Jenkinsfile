@@ -11,7 +11,6 @@ pipeline{
             agent { docker { image 'golang' } }
 
             steps {
-                sh "docker images"
                 sh "go version"
                 sh "${root} version"
                 git branch: "${branch}", url: "${scmUrl}"
