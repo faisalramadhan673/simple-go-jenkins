@@ -7,31 +7,44 @@ pipeline{
     }
 
     stages{
-        stage("Go Version"){
-            steps {
-                sh "${root} version" 
-            }
-        }
+        stage('Docker') {
+            agent { docker { image 'golang' } }
 
-        stage("Git Clone"){
             steps {
+                sh "go version"
+                sh "${root} version"
                 git branch: "${branch}", url: "${scmUrl}"
-            }
-        }
-
-        stage("Go Test"){
-            steps {
                 sh "${root} test ./... -cover"
-            }
-        }
-
-        stage("Go Build"){
-            steps {
                 sh "${root} build ./..."
             }
         }
+
+        // stage("Go Version"){
+        //     steps {
+        //         sh "${root} version" 
+        //     }
+        // }
+
+        // stage("Git Clone"){
+        //     steps {
+        //         git branch: "${branch}", url: "${scmUrl}"
+        //     }
+        // }
+
+        // stage("Go Test"){
+        //     steps {
+        //         sh "${root} test ./... -cover"
+        //     }
+        // }
+
+        // stage("Go Build"){
+        //     steps {
+        //         sh "${root} build ./..."
+        //     }
+        // }
     }
 }
+
 
 // // Run on an agent where we want to use Go
 // node {
