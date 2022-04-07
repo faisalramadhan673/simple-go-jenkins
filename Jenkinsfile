@@ -8,7 +8,7 @@ pipeline{
 
     stages{
         stage('Docker') {
-            agent { docker { image 'sum-golang' } }
+            agent { docker { image 'sum-golang:latest' } }
 
             steps {
                 sh "go version"
