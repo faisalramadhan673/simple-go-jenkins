@@ -15,7 +15,7 @@ pipeline{
 
         stage("Dockerize"){
             steps {
-                sh "docker build -t sample jenkins ."
+                sh "docker build -t sample-jenkins ."
             }
         }
 
